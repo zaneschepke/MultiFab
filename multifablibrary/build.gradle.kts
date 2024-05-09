@@ -116,7 +116,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/zaneschepke/pin-lock-compose")
+            url = uri("https://maven.pkg.github.com/zaneschepke/multifab")
             credentials {
                 username = getLocalProperty("GITHUB_USER")
                 password = getLocalProperty("GITHUB_TOKEN")
