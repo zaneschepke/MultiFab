@@ -6,9 +6,13 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Scaffold
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import com.iamageo.multifab.ui.theme.MultiFabTheme
 import com.iamageo.multifablibrary.FabIcon
 import com.iamageo.multifablibrary.FabOption
@@ -21,7 +25,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MultiFabTheme {
                 Scaffold(
-                    backgroundColor = Color.Black,
+                    containerColor = Color.Black,
                     floatingActionButton = {
                         MultiFloatingActionButton(
                             fabIcon = FabIcon(
@@ -31,24 +35,24 @@ class MainActivity : ComponentActivity() {
                             ),
                             fabOption = FabOption(
                                 iconTint = Color.Blue,
-                                showLabels = true,
                                 backgroundTint = Color.White,
                             ),
                             itemsMultiFab = listOf(
                                 MultiFabItem(
+                                    label = {
+                                            Text("label1", color = Color.White, textAlign = TextAlign.Center, modifier = Modifier.padding(end = 10.dp))
+                                    },
                                     icon = R.drawable.ic_baseline_add_24,
-                                    label = "first",
-                                    labelColor = Color.White
                                 ),
                                 MultiFabItem(
+                                    label = {
+                                            Text("label2", color = Color.White, textAlign = TextAlign.Center, modifier = Modifier.padding(end = 10.dp))
+                                    },
                                     icon = R.drawable.ic_baseline_add_24,
-                                    label = "second",
-                                    labelColor = Color.White
                                 ),
                             ),
                             onFabItemClicked = { println(it) },
-                            fabTitle = "MultiFloatActionButton",
-                            showFabTitle = false
+                            shape = RoundedCornerShape(16.dp),
                         )
                     }
                 ) { paddingValues ->

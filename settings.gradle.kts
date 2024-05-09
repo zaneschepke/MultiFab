@@ -10,9 +10,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
     }
 }
 rootProject.name = "MultiFab"
-include ':app'
-include ':multifablibrary'
+include(":app")
+include(":multifablibrary")

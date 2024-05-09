@@ -5,26 +5,26 @@ import androidx.compose.animation.*
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 
 @Composable
 fun MultiFloatingActionButton(
     fabIcon: FabIcon,
-    fabTitle: String?,
-    showFabTitle: Boolean,
     modifier: Modifier = Modifier,
+    shape: Shape = RoundedCornerShape(16.dp),
     itemsMultiFab: List<MultiFabItem>,
     fabState: MutableState<MultiFabState> = rememberMultiFabState(),
     fabOption: FabOption = FabOption(),
@@ -33,11 +33,12 @@ fun MultiFloatingActionButton(
     stateChanged: (fabState: MultiFabState) -> Unit = {}
 ) {
     val rotation by animateFloatAsState(
-        if (fabState.value == MultiFabState.Expanded) fabIcon.iconRotate ?: 0f else 0f
+        if (fabState.value == MultiFabState.Expanded) fabIcon.iconRotate ?: 0f else 0f, label = ""
     )
 
     Column(
         modifier = modifier.wrapContentSize(),
+        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.End,
     ) {
         AnimatedVisibility(
@@ -46,34 +47,31 @@ fun MultiFloatingActionButton(
             exit = fadeOut()
         ) {
             LazyColumn(
-                modifier = Modifier.wrapContentSize(),
                 horizontalAlignment = Alignment.End,
-                verticalArrangement = Arrangement.spacedBy(15.dp)
+                verticalArrangement = Arrangement.spacedBy(15.dp, Alignment.CenterVertically),
+                modifier = Modifier.padding(8.5.dp)
             ) {
-
-                itemsIndexed(itemsMultiFab) { _, item ->
+                items(itemsMultiFab) { item ->
                     MiniFabItem(
                         item = item,
-                        showLabel = miniFabOption.showLabels,
                         miniFabColor = miniFabOption.iconTint,
                         miniFabBackgroundColor = miniFabOption.backgroundTint,
                         onFabItemClicked = { onFabItemClicked(item) })
                 }
-
-                item {}
+                item{}
             }
         }
         Row(
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.End,
         ) {
-            if (fabState.value.isExpanded() && showFabTitle)
-                Text(text = fabTitle!!, modifier = Modifier.padding(end = 16.dp), fontSize = 12.sp)
             FloatingActionButton(
                 onClick = {
                     fabState.value = fabState.value.toggleValue()
                     stateChanged(fabState.value)
                 },
-                backgroundColor = fabOption.backgroundTint,
+                shape = shape,
+                containerColor = fabOption.backgroundTint,
                 contentColor = fabOption.iconTint
             ) {
                 Icon(

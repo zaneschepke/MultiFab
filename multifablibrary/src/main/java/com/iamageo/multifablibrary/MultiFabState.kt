@@ -6,8 +6,8 @@ import androidx.compose.runtime.remember
 
 sealed class MultiFabState {
 
-    object Collapsed : MultiFabState()
-    object Expanded : MultiFabState()
+    data object Collapsed : MultiFabState()
+    data object Expanded : MultiFabState()
 
     fun toggleValue() = if (isExpanded()) {
         Collapsed
