@@ -25,14 +25,14 @@ Add below codes to your **root** `build.gradle` file (not your module build.grad
 allprojects {
   repositories {
     ...
-    maven { url 'https://jitpack.io' }
+    mavenCentral()
   }
 }
 ```
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-  implementation 'com.github.iamageo:MultiFab:{multifab-version}'
+  implementation("com.zaneschepke:multifab:1.0.9")
 }
 ```
 
@@ -60,26 +60,28 @@ MultiFloatingActionButton(
         iconRotate = 180f
     ),
     fabOption = FabOption(
-        iconTint = Color.White,
-        showLabels = true,
-        backgroundTint = Color.Blue,
+        iconTint = Color.Blue,
+        backgroundTint = Color.White,
     ),
     itemsMultiFab = listOf(
         MultiFabItem(
+            value = "label1",
+            label = {
+                Text("label1", color = Color.White, textAlign = TextAlign.Center, modifier = Modifier.padding(end = 10.dp))
+            },
             icon = R.drawable.ic_baseline_add_24,
-            label = "first",
-            labelColor = Color.White
         ),
         MultiFabItem(
+            value = "label1",
+            label = {
+                Text("label2", color = Color.White, textAlign = TextAlign.Center, modifier = Modifier.padding(end = 10.dp))
+            },
             icon = R.drawable.ic_baseline_add_24,
-            label = "second",
-            labelColor = Color.White
         ),
     ),
-    onFabItemClicked = { println(it) },
-    fabTitle = "MultiFloatActionButton",
-    showFabTitle = false
- )
+    onFabItemClicked = { println(it.value) },
+    shape = RoundedCornerShape(16.dp),
+)
 ```
 ## Preview
 ![multifab](https://user-images.githubusercontent.com/26925002/187035337-b9f654b6-7e90-4395-bada-5c22aa681692.gif)
