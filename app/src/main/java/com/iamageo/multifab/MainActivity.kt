@@ -39,19 +39,21 @@ class MainActivity : ComponentActivity() {
                             ),
                             itemsMultiFab = listOf(
                                 MultiFabItem(
+                                    value = "label1",
                                     label = {
                                             Text("label1", color = Color.White, textAlign = TextAlign.Center, modifier = Modifier.padding(end = 10.dp))
                                     },
                                     icon = R.drawable.ic_baseline_add_24,
                                 ),
                                 MultiFabItem(
+                                    value = "label1",
                                     label = {
                                             Text("label2", color = Color.White, textAlign = TextAlign.Center, modifier = Modifier.padding(end = 10.dp))
                                     },
                                     icon = R.drawable.ic_baseline_add_24,
                                 ),
                             ),
-                            onFabItemClicked = { println(it) },
+                            onFabItemClicked = { println(it.value) },
                             shape = RoundedCornerShape(16.dp),
                         )
                     }

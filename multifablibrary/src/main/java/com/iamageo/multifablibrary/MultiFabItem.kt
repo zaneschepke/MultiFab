@@ -9,6 +9,7 @@ import androidx.compose.ui.unit.dp
 
 class MultiFabItem(
     val icon: Int,
+    val value: String,
     val label: (@Composable () -> Unit)? = {},
     val shape: Shape = RoundedCornerShape(16.dp),
     val modifier: Modifier = Modifier.size(40.dp),
