@@ -44,6 +44,7 @@ class MainActivity : ComponentActivity() {
                                             Text("label1", color = Color.White, textAlign = TextAlign.Center, modifier = Modifier.padding(end = 10.dp))
                                     },
                                     icon = R.drawable.ic_baseline_add_24,
+                                    miniFabOption = FabOption()
                                 ),
                                 MultiFabItem(
                                     value = "label1",
@@ -51,6 +52,7 @@ class MainActivity : ComponentActivity() {
                                             Text("label2", color = Color.White, textAlign = TextAlign.Center, modifier = Modifier.padding(end = 10.dp))
                                     },
                                     icon = R.drawable.ic_baseline_add_24,
+                                    miniFabOption = FabOption()
                                 ),
                             ),
                             onFabItemClicked = { println(it.value) },
