@@ -28,7 +28,6 @@ fun MultiFloatingActionButton(
     itemsMultiFab: List<MultiFabItem>,
     fabState: MutableState<MultiFabState> = rememberMultiFabState(),
     fabOption: FabOption = FabOption(),
-    miniFabOption: FabOption = fabOption,
     onFabItemClicked: (fabItem: MultiFabItem) -> Unit,
     stateChanged: (fabState: MultiFabState) -> Unit = {}
 ) {
@@ -37,7 +36,7 @@ fun MultiFloatingActionButton(
     )
 
     Column(
-        modifier = modifier.wrapContentSize(),
+        modifier = Modifier.wrapContentSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.End,
     ) {
@@ -54,8 +53,8 @@ fun MultiFloatingActionButton(
                 items(itemsMultiFab) { item ->
                     MiniFabItem(
                         item = item,
-                        miniFabColor = miniFabOption.iconTint,
-                        miniFabBackgroundColor = miniFabOption.backgroundTint,
+                        miniFabColor = item.miniFabOption.iconTint,
+                        miniFabBackgroundColor = item.miniFabOption.backgroundTint,
                         onFabItemClicked = { onFabItemClicked(item) })
                 }
                 item{}
@@ -66,6 +65,7 @@ fun MultiFloatingActionButton(
             horizontalArrangement = Arrangement.End,
         ) {
             FloatingActionButton(
+                modifier = modifier,
                 onClick = {
                     fabState.value = fabState.value.toggleValue()
                     stateChanged(fabState.value)
