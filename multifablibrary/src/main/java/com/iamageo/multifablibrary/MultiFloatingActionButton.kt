@@ -55,7 +55,10 @@ fun MultiFloatingActionButton(
                         item = item,
                         miniFabColor = item.miniFabOption.iconTint,
                         miniFabBackgroundColor = item.miniFabOption.backgroundTint,
-                        onFabItemClicked = { onFabItemClicked(item) })
+                        onFabItemClicked = {
+                            onFabItemClicked(item)
+                            fabState.value = MultiFabState.Collapsed
+                        })
                 }
                 item{}
             }
